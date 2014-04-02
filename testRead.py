@@ -8,7 +8,7 @@ serialIO = serial.Serial("/dev/tty"+dev, 38400, timeout=1)
 while True :
 	serialIO.write("01 0C \r")
 	line_rpm = serialIO.readline().split(" ")
-	rpm = int("0x"+line_rpm[2]+line_rpm[3], 16)/4
+	rpm = int("0x"+line_rpm[4]+line_rpm[5], 16)/4
 
 	serialIO.write("01 0D \r")
 	line_speed = serialIO.readline().split(" ")
