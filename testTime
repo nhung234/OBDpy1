@@ -1,0 +1,7 @@
+from datetime import datetime
+
+while True:
+	localtime = time.localtime(time.time())
+	localtime = datetime.now()
+	#current_time = str(localtime.hour)+":"+str(localtime.minute)+":"+str(localtime.second)+"."+str(localtime.microsecond)
+	print localtime+"\n"
