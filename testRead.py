@@ -21,13 +21,13 @@ while True :
 	line_load = serialIO.readline().split(" ")
 	load = int("0x"+line_load[4], 16)*100/255
 	
-	serialIO.write("01 0B \r")
-	line_map = serialIO.readline().split(" ")
-	amap = int("0x"+line_map[4], 16)
+	serialIO.write("01 10 \r")
+	line_maf = serialIO.readline().split(" ")
+	maf = int("0x"+line_maf[4]+line_maf[5], 16)/100
 
 	print speed, "km/h"
 	print rpm, "rpm"
-	print amap, " kPa"
+	print maf, " grams/sec"
 	print "Current Load ", load, " %"
 	print "-------------------------------"
 
