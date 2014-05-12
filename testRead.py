@@ -5,7 +5,7 @@ print "entered device", dev
 
 serialIO = serial.Serial("/dev/tty"+dev, 38400, timeout=1)
 
-
+f = open(record.txt", "w")
 while True :
 	print "------ "+strftime("%d-%m-%Y %H:%M:%S")+" ------"
 
@@ -25,9 +25,7 @@ while True :
 	line_maf = serialIO.readline().split(" ")
 	maf = int("0x"+line_maf[4]+line_maf[5], 16)/100
 
-	print speed, "km/h"
-	print rpm, "rpm"
-	print maf, " grams/sec"
-	print "Current Load ", load, " %"
+	f.write(speed, "km/h ; ",rpm, "rpm ; ",maf, " grams/sec ; ")
+	print speed, "km/h ; ",rpm, "rpm ; ",maf, " grams/sec ; "
 	print "-------------------------------"
 
