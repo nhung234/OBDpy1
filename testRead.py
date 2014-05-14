@@ -25,7 +25,7 @@ while True :
 	line_maf = serialIO.readline().split(" ")
 	maf = int("0x"+line_maf[4]+line_maf[5], 16)/100
 
-	f.write(speed, "km/h ; ",rpm, "rpm ; ",maf, " grams/sec ; ")
+	f.write(repr(speed)+ "km/h,  " +repr(rpm)+ "rpm,  " +repr(maf)+ " grams/sec "+ )
 	print speed, "km/h ; ",rpm, "rpm ; ",maf, " grams/sec ; "
 	print "-------------------------------"
 
