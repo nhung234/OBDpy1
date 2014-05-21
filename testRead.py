@@ -5,9 +5,14 @@ print "entered device", dev
 
 serialIO = serial.Serial("/dev/tty"+dev, 38400, timeout=1)
 
-f = open(record.txt", "w")
+directory="/"+strftime("%d-%m-%Y")+"/" 
+
+if not os.path.exists(directory):
+    os.makedirs(directory)
+
+f = open("record.txt", "w")
 while True :
-	print "------ "+strftime("%d-%m-%Y %H:%M:%S")+" ------"
+	#print "------ "+strftime("%d-%m-%Y %H:%M:%S")+" ------"
 
 	serialIO.write("01 0C \r")
 	line_rpm = serialIO.readline().split(" ")
