@@ -1,16 +1,24 @@
 import serial
+import os.path
 from time import strftime
+
 dev = raw_input("Enter device directory: ")
 print "entered device", dev
 
 serialIO = serial.Serial("/dev/tty"+dev, 38400, timeout=1)
 
-directory="/"+strftime("%d-%m-%Y")+"/" 
+directory="/"+strftime("%Y-%m-%d")+"/" 
 
 if not os.path.exists(directory):
-    os.makedirs(directory)
+    os.makedirs(directory) 
+    #if directory is exist it will not create
 
-f = open("record.txt", "w")
+path = '.'
+num_files = len([f for f in os.listdir(path)
+                if os.path.isfile(os.path.join(path, f))])
+
+
+f = open(".txt", "w")
 while True :
 	#print "------ "+strftime("%d-%m-%Y %H:%M:%S")+" ------"
 
@@ -22,9 +30,9 @@ while True :
 	line_speed = serialIO.readline().split(" ")
 	speed = int("0x"+line_speed[4], 16)
 
-	serialIO.write("01 04 \r")
-	line_load = serialIO.readline().split(" ")
-	load = int("0x"+line_load[4], 16)*100/255
+	#serialIO.write("01 04 \r")
+	#line_load = serialIO.readline().split(" ")
+	#load = int("0x"+line_load[4], 16)*100/255
 	
 	serialIO.write("01 10 \r")
 	line_maf = serialIO.readline().split(" ")
@@ -32,5 +40,5 @@ while True :
 
 	f.write(repr(strftime("%H:%M:%S"))+"----"+repr(speed)+ "km/h,  " +repr(rpm)+ "rpm,  " +repr(maf)+ " grams/sec ")
 	print speed, "km/h ; ",rpm, "rpm ; ",maf, " grams/sec ; "
-	print "-------------------------------"
+	#print "-------------------------------"
 
