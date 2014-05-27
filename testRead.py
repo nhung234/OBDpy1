@@ -13,12 +13,12 @@ if not os.path.exists(directory):
     os.makedirs(directory) 
     #if directory is exist it will not create
 
-path = '.'
-num_files = len([f for f in os.listdir(path)
-                if os.path.isfile(os.path.join(path, f))])
+#path = '.'
+#num_files = len([f for f in os.listdir(path)
+#                if os.path.isfile(os.path.join(path, f))])
 
 
-f = open(".txt", "w")
+f = open(repr()"/"+strftime("%d-%m-%Y_%H:%M:%S")+".txt", "w")
 while True :
 	#print "------ "+strftime("%d-%m-%Y %H:%M:%S")+" ------"
 
@@ -39,6 +39,7 @@ while True :
 	maf = int("0x"+line_maf[4]+line_maf[5], 16)/100
 
 	f.write(repr(strftime("%H:%M:%S"))+"----"+repr(speed)+ "km/h,  " +repr(rpm)+ "rpm,  " +repr(maf)+ " grams/sec ")
+	#MPG calculation
 	print speed, "km/h ; ",rpm, "rpm ; ",maf, " grams/sec ; "
 	#print "-------------------------------"
 
