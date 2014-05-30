@@ -2,10 +2,10 @@ import serial
 import os.path
 from time import strftime
 
-dev = raw_input("Enter device directory: ")
-print "entered device", dev
+#dev = raw_input("Enter device directory: ")
+#print "entered device", dev
 
-serialIO = serial.Serial("/dev/tty"+dev, 38400, timeout=1)
+#serialIO = serial.Serial("/dev/tty"+dev, 38400, timeout=1)
 
 directory="/"+strftime("%Y-%m-%d")+"/" 
 
