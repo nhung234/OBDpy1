@@ -25,24 +25,24 @@ f = open(strftime("%d-%m-%Y")+"/"+strftime("%d-%m-%Y_%H:%M:%S")+".txt", "w") #it
 while True :
 #print "------ "+strftime("%d-%m-%Y %H:%M:%S")+" ------"
 
-serialIO.write("01 0C \r")
-line_rpm = serialIO.readline().split(" ")
-rpm = int("0x"+line_rpm[4]+line_rpm[5], 16)/4
+    serialIO.write("01 0C \r") 
+    line_rpm = serialIO.readline().split(" ")
+    rpm = int("0x"+line_rpm[4]+line_rpm[5], 16)/4
 
-serialIO.write("01 0D \r")
-line_speed = serialIO.readline().split(" ")
-speed = int("0x"+line_speed[4], 16)
+    serialIO.write("01 0D \r")
+    line_speed = serialIO.readline().split(" ")
+    speed = int("0x"+line_speed[4], 16)
 
-serialIO.write("01 04 \r")
-line_load = serialIO.readline().split(" ")
-load = int("0x"+line_load[4], 16)*100/255
+    serialIO.write("01 04 \r")
+    line_load = serialIO.readline().split(" ")
+    load = int("0x"+line_load[4], 16)*100/255
 
-serialIO.write("01 10 \r")
-line_maf = serialIO.readline().split(" ")
-maf = int("0x"+line_maf[4]+line_maf[5], 16)/100
+    serialIO.write("01 10 \r")
+    line_maf = serialIO.readline().split(" ")
+    maf = int("0x"+line_maf[4]+line_maf[5], 16)/100
 
-MPG = (14.7 * 6.17 * 454 * speed * 0.621371) / (3600 * maf / 100) #MPG Calculation
-f.write(repr(strftime("%H:%M:%S"))+"----"+repr(speed)+ "km/h, " +repr(rpm)+ "rpm, " +repr(MPG)+ " MPG, Load:"++repr(load)+ "%")
-#In file "31-05-2014_10:15:45.txt" will store the drive data 
-#e.g. "10:15:45----20km/h, 1500rpm, 10 MPG, Load:10%"
-print speed, "km/h ; ",rpm, "rpm ; ",MPG, " MPG ; Load:",load,"%"
+    MPG = (14.7 * 6.17 * 454 * speed * 0.621371) / (3600 * maf / 100) #MPG Calculation
+    f.write(repr(strftime("%H:%M:%S"))+"----"+repr(speed)+ "km/h, " +repr(rpm)+ "rpm, " +repr(MPG)+ " MPG, Load:"++repr(load)+ "%")
+    #In file "31-05-2014_10:15:45.txt" will store the drive data 
+    #e.g. "10:15:45----20km/h, 1500rpm, 10 MPG, Load:10%"
+    print speed, "km/h ; ",rpm, "rpm ; ",MPG, " MPG ; Load:",load,"%"
