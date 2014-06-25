@@ -19,7 +19,7 @@ if not os.path.exists(directory):
 # if os.path.isfile(os.path.join(path, f))])
 
 
-f = open(strftime("%d-%m-%Y")+"/"+strftime("%d-%m-%Y_%H:%M:%S")+".txt", "w") #it will create a record file in the folder that has created 
+f = open(strftime("%d-%m-%Y")+"/"+strftime("%d-%m-%Y_%H:%M:%S")+".txt", "w",5) #it will create a record file in the folder that has created 
 #so file will store like this "31-05-2014/31-05-2014_10:15:45.txt"
 
 while True :
