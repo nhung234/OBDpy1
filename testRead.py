@@ -40,9 +40,13 @@ while True :
     serialIO.write("01 10 \r")
     line_maf = serialIO.readline().split(" ")
     maf = int("0x"+line_maf[4]+line_maf[5], 16)/100
+    
+    serialIO.write("01 11 \r")
+    line_tp = serialIO.readline().split(" ")
+    tp = int("0x"+line_tp[4], 16)*100/255
 
     #MPG = (14.7 * 6.17 * 454 * speed * 0.621371) / (3600 * maf / 100) MPG Calculation
-    f.write(repr(strftime("%H:%M:%S"))+"---- Speed:"+repr(speed)+ ", MAF:" +repr(maf)+ ", RPM:" +repr(rpm)+ ", Load:"++repr(load))
+    f.write(repr(strftime("%H:%M:%S"))+"---- Speed:"+repr(speed)+ ", MAF:" +repr(maf)+ ", RPM:" +repr(rpm)+ ", Load:"+repr(load)+ ", TP:"+repr(tp) )
     #In file "31-05-2014_10:15:45.txt" will store the drive data 
     #e.g. "10:15:45---- Speed:20, MAF:3, RPM:1500, Load:10"
     print speed, "km/h ; ",rpm, "rpm ; ",MPG, " MPG ; Load:",load,"%"
